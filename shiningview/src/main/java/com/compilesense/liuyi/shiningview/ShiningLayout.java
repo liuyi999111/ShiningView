@@ -29,8 +29,8 @@ public class ShiningLayout extends FrameLayout {
 
     private int[] colors = new int[]{Color.TRANSPARENT, Color.WHITE, Color.TRANSPARENT};
     private float[] positions = new float[]{0.25f, 0.5f, 0.75f};
-    private int[] radialColors = new int[]{Color.WHITE, Color.TRANSPARENT};
-    private float[] radialPositions = new float[]{0f, 0.75f};
+    private int[] radialColors = new int[]{Color.WHITE, Color.WHITE,Color.TRANSPARENT};
+    private float[] radialPositions = new float[]{0f, 0.75f, 0.95f};
 
     private ValueAnimator mAnimator;
     private float xOffSet = 0;
@@ -56,7 +56,6 @@ public class ShiningLayout extends FrameLayout {
         linearity, spotlight
     }
 
-    private float rotationAngle;
     private float shininessSize;
 
 
@@ -126,6 +125,8 @@ public class ShiningLayout extends FrameLayout {
 
     public void setShininessType(ShininessType mShininessType) {
         this.mShininessType = mShininessType;
+        recycleBitmaps();
+        invalidate();
     }
 
     private void init(){
@@ -226,6 +227,10 @@ public class ShiningLayout extends FrameLayout {
             maskWidth = getWidth();
             maskHeight = 3 * getHeight();
         }
+        Log.d(TAG,"getWidth:"+getWidth());
+        Log.d(TAG,"getHeight:"+getHeight());
+        Log.d(TAG,"maskWidth:"+maskWidth);
+        Log.d(TAG,"maskHeight:"+maskHeight);
     }
 
     private Shader createShader(DirectionOfMovement direction) throws Exception{
@@ -243,7 +248,8 @@ public class ShiningLayout extends FrameLayout {
                 startPointX = maskWidth * (1f/2f - sw);
                 startPointY = 0;
                 endPointX = maskWidth * (1f/2f + sw);
-                endPointY = maskHeight;
+                endPointY = maskHeight * sw;
+
             }else if (direction == DirectionOfMovement.top2bottom || direction == DirectionOfMovement.bottom2top){
                 startPointX = 0;
                 startPointY = maskHeight * (1f/2f - sw);
@@ -318,6 +324,23 @@ public class ShiningLayout extends FrameLayout {
             case bottom2top:
                 yOffSet = -2 * h * value;
                 break;
+        }
+    }
+
+    private void recycleBitmaps(){
+        if (mMaskBitmap != null){
+            mMaskBitmap.recycle();
+            mMaskBitmap = null;
+        }
+
+        if (mRenderMaskBitmap != null){
+            mRenderMaskBitmap.recycle();
+            mRenderMaskBitmap = null;
+        }
+
+        if (mRenderUnmaskBitmap != null){
+            mRenderUnmaskBitmap.recycle();
+            mRenderUnmaskBitmap = null;
         }
     }
 }

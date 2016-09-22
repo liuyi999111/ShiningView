@@ -8,20 +8,48 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.compilesense.liuyi.shiningview.MainActivity">
+    android:background="@android:color/black"
+    tools:context="com.compilesense.liuyi.shiningviewsample.MainActivity">
 
     <com.compilesense.liuyi.shiningview.ShiningLayout
         android:id="@+id/container"
-        android:background="@android:color/black"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
-            android:textSize="46sp"
-            android:textColor="@android:color/white"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_j"
+                android:src="@drawable/jiang2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_s"
+                android:textSize="26sp"
+                android:typeface="serif"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/jsays" />
+        </LinearLayout>
     </com.compilesense.liuyi.shiningview.ShiningLayout>
+
+    <Button
+        android:id="@+id/bt_normal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/bt_spotlight"
+        android:layout_toRightOf="@+id/bt_normal"
+        android:layout_alignTop="@+id/bt_normal"
+        android:text="spotlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

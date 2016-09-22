@@ -3,9 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0"
-    enforceUniquePackageName = false
     defaultConfig {
-        applicationId "com.compilesense.liuyi.shiningview"
+        applicationId "com.compilesense.liuyi.shiningviewsample"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -27,5 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:23.4.0'
     testCompile 'junit:junit:4.12'
+
     compile project(':shiningview')
 }
